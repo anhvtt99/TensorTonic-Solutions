@@ -4,10 +4,12 @@ def linear_layer_forward(X: list, W: list, b: list) -> list:
     """
     # Write code here
     Y = []
-    for row in X:
+    n = len(X)
+    d_in = len(W[0])
+    for X_row in X:
         Y_row = []
-        for i in range(len(W[0])):
-            W_col = [r[i] for r in W]
-            Y_row.append(sum([j[0] * j[1] for j in zip(row, W_col)]) + b[i])
+        for i in range(d_in):
+            W_col = [W_row[i] for W_row in W]
+            Y_row.append(sum([j[0] * j[1] for j in zip(X_row, W_col)]) + b[i])
         Y.append(Y_row)
     return Y
